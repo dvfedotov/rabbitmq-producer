@@ -17,13 +17,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-    public static final String MESSAGE_QUEUE = "message_queue";
+    public static final String MESSAGE_QUEUE = "message_queue_1";
+    public static final String MESSAGE_QUEUE_2 = "message_queue_2";
     public static final String MESSAGE_EXCHANGE = "message_exchange";
-    public static final String MESSAGE_ROUNTING_KEY = "message_rountingKey";
+    public static final String MESSAGE_ROUTING_KEY_1 = "message_routingKey_1";
+    public static final String MESSAGE_ROUTING_KEY_2 = "message_routingKey_2";
 
     @Bean
-    public Queue queue() {
+    public Queue queue1() {
         return new Queue(MESSAGE_QUEUE);
+    }
+
+    @Bean
+    public Queue queue2() {
+        return new Queue(MESSAGE_QUEUE_2);
     }
 
     @Bean
@@ -32,11 +39,19 @@ public class MqConfig {
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
+    public Binding binding1() {
         return BindingBuilder
-            .bind(queue)
-            .to(exchange)
-            .with(MESSAGE_ROUNTING_KEY);
+            .bind(queue1())
+            .to(exchange())
+            .with(MESSAGE_ROUTING_KEY_1);
+    }
+
+    @Bean
+    public Binding binding2() {
+        return BindingBuilder
+            .bind(queue2())
+            .to(exchange())
+            .with(MESSAGE_ROUTING_KEY_2);
     }
 
     @Bean

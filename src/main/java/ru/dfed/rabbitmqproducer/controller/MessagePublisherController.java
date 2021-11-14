@@ -10,11 +10,11 @@ import ru.dfed.rabbitmqproducer.config.MqConfig;
 import ru.dfed.rabbitmqproducer.domain.CustomMessage;
 
 @RestController
-public class MessagePublisher {
+public class MessagePublisherController {
 
     private final RabbitTemplate template;
 
-    public MessagePublisher(RabbitTemplate template) {
+    public MessagePublisherController(RabbitTemplate template) {
         this.template = template;
     }
 
@@ -22,7 +22,11 @@ public class MessagePublisher {
     public String publishMessage(@RequestBody CustomMessage message) {
         message.setMessageId(UUID.randomUUID().toString());
         message.setMessageDate(new Date());
-        template.convertAndSend(MqConfig.MESSAGE_EXCHANGE, MqConfig.MESSAGE_ROUNTING_KEY, message);
+        if(message.getMessage().contains("test")){
+            template.convertAndSend(MqConfig.MESSAGE_EXCHANGE, MqConfig.MESSAGE_ROUTING_KEY_1, message);
+        }else{
+            template.convertAndSend(MqConfig.MESSAGE_EXCHANGE, MqConfig.MESSAGE_ROUTING_KEY_2, message);
+        }
         return "Message Published";
     }
 
