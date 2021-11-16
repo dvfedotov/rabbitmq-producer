@@ -1,5 +1,6 @@
 package ru.dfed.rabbitmqproducer.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +11,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CustomMessage {
+public class CustomMessage implements Serializable {
 
     private String messageId;
     private String message;
     private Date messageDate;
+    private ProductType productType;
 }

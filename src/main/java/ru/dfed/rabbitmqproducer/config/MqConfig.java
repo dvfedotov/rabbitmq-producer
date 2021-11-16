@@ -20,8 +20,8 @@ public class MqConfig {
     public static final String MESSAGE_QUEUE = "message_queue_1";
     public static final String MESSAGE_QUEUE_2 = "message_queue_2";
     public static final String MESSAGE_EXCHANGE = "message_exchange";
-    public static final String MESSAGE_ROUTING_KEY_1 = "message_routingKey_1";
-    public static final String MESSAGE_ROUTING_KEY_2 = "message_routingKey_2";
+    public static final String MESSAGE_ROUTING_KEY_1 = "liquid";
+    public static final String MESSAGE_ROUTING_KEY_2 = "countable";
 
     @Bean
     public Queue queue1() {
