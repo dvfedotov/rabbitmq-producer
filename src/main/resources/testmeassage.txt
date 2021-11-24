@@ -1,0 +1,31 @@
+{
+    "message": "test1",
+    "productType": "liquid",
+    "number": 10,
+    "amount": 100
+}
+
+{
+    "message": "test2",
+    "productType": "countable",
+    "number": 10,
+    "amount": 100
+}
+{
+    "message": "test3",
+    "productType": "liquid",
+    "number": 1000,
+    "amount": 100
+}
+{
+    "message": "test4",
+    "productType": "liquid",
+    "number": 10,
+    "amount": 1000
+}
+{
+    "message": "test5",
+    "productType": "countable",
+    "number": 1000,
+    "amount": 100
+}

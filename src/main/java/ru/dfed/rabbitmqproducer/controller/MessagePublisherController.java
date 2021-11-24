@@ -22,12 +22,19 @@ public class MessagePublisherController {
 
     @PostMapping("/publish")
     public String publishMessage(@RequestBody CustomMessage message) {
-        message.setMessageId(UUID.randomUUID().toString());
-        message.setMessageDate(new Date());
-        log.info("Received {}",message.toString());
-        template.setExchange(MqConfig.MESSAGE_EXCHANGE);
-        template.convertAndSend(message.getProductType().getType(), message);
+        validateOrder(message);
+        log.info("Received {}", message);
+        template.convertAndSend(MqConfig.MESSAGE_EXCHANGE, message.getProductType().getType(), message);
         return "Message Published";
+    }
+
+    private void validateOrder(CustomMessage message) {
+        if (message.getMessageId() == null) {
+            message.setMessageId(UUID.randomUUID().toString());
+        }
+        if (message.getMessageDate() == null) {
+            message.setMessageDate(new Date());
+        }
     }
 
 }
